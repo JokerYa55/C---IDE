@@ -6,18 +6,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 
 public class MainApp extends Application {
 
+    private static Logger log = Logger.getLogger(MainApp.class); 
+    private Scene scene;
     @Override
     public void start(Stage stage) throws Exception {
+        log.debug("start");
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         
-        stage.setTitle("JavaFX and Maven");
+        stage.setTitle("C-- IDE");
         stage.setScene(scene);
         stage.show();
     }
