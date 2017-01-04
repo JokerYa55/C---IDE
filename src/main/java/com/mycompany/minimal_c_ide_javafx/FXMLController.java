@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
 import org.apache.log4j.Logger;
@@ -26,7 +27,7 @@ public class FXMLController implements Initializable {
     private Label label;
 
     @FXML
-    private HTMLEditor idTextEditor;
+    private TextArea idTextEditor;
 
     @FXML
     private MenuItem idMenuItemOpen;
@@ -35,7 +36,7 @@ public class FXMLController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
-        idTextEditor.setHtmlText("GOOD!");
+        idTextEditor.setText("GOOD!");
     }
 
     @FXML
@@ -54,11 +55,11 @@ public class FXMLController implements Initializable {
                     String temp = "";
                     StringBuilder sb = new StringBuilder();
                     while ((temp = fr.readLine()) != null) {
-                        sb.append(temp);
+                        sb.append(temp + "\n");
                     }
-                    idTextEditor.setHtmlText(sb.toString());
-
-                    log.debug("program = " + idTextEditor.getHtmlText());
+                    
+                    idTextEditor.setText(sb.toString());
+                    log.debug("program = " + idTextEditor.getText());
                     
                 } catch (Exception e) {
                     log.error(e);
