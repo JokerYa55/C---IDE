@@ -5,17 +5,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
-import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
 import org.apache.log4j.Logger;
 
@@ -31,6 +28,9 @@ public class FXMLController implements Initializable {
 
     @FXML
     private MenuItem idMenuItemOpen;
+    
+    @FXML
+    private MenuItem idMenuItemCompile;
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -39,6 +39,11 @@ public class FXMLController implements Initializable {
         idTextEditor.setText("GOOD!");
     }
 
+    @FXML
+    private void idMenuItemCompileAction(ActionEvent event) {
+        
+    }
+    
     @FXML
     private void idMenuItemOpenAction(ActionEvent event) {
         log.debug(event);

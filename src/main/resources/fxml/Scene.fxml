@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="734.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.minimal_c_ide_javafx.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="904.0" prefWidth="1199.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.minimal_c_ide_javafx.FXMLController">
     <children>
         <Label fx:id="label" layoutX="425.0" layoutY="696.0" minHeight="16" minWidth="69" />
       <MenuBar layoutX="2.0" layoutY="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
@@ -16,6 +16,7 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
                   <MenuItem fx:id="idMenuItemOpen" mnemonicParsing="false" onAction="#idMenuItemOpenAction" text="Открыть" />
+                  <MenuItem fx:id="idMenuItemCompile" mnemonicParsing="false" onAction="#idMenuItemCompileAction" text="Компилировать" />
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
