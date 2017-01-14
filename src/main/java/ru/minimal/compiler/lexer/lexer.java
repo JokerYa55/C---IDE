@@ -22,7 +22,7 @@ import ru.minimal.compiler.lexer.lexerConst.tokenEnum;
  */
 public class lexer {
 
-    static Logger log = Logger.getLogger(lexer.class);
+   // static Logger log = Logger.getLogger(lexer.class);
     private Hashtable<String, tokenEnum> symbols = new Hashtable<>();
     private Hashtable<String, tokenEnum> words = new Hashtable<>();
     private Reader fin;
@@ -67,9 +67,9 @@ public class lexer {
 
         this.currentCh = getChar();
         nextToken();
-        log.debug("*******************************");
+       // log.debug("*******************************");
         for (token tok : tokenList) {
-            log.debug(tok.getSym() + " : " + tok.getVal());
+           // log.debug(tok.getSym() + " : " + tok.getVal());
         }
     }
 
@@ -87,21 +87,21 @@ public class lexer {
                 while (isAlpha(currentCh + "")) {
                     ident = ident + this.currentCh;
                     this.currentCh = getChar();
-                    log.debug("this.currentCh : " + this.currentCh);
+                   // log.debug("this.currentCh : " + this.currentCh);
                 }
                 if (isWord(ident)) {
                     res = new token();
                     res.setSym(words.get(ident));
                     res.setVal(ident);
                     tokenList.add(res);
-                    log.debug("word : " + ident);
+                   // log.debug("word : " + ident);
                     //this.currentCh = getChar();
                 } else {
                     res = new token();
                     res.setSym(tokenEnum.ID);
                     res.setVal(ident);
                     tokenList.add(res);
-                    log.debug("Alpha : " + res.getSym());
+                  //  log.debug("Alpha : " + res.getSym());
                     //this.currentCh = getChar();
                 }
 
@@ -115,28 +115,28 @@ public class lexer {
                 res.setSym(tokenEnum.NUM);
                 res.setVal(ident);
                 tokenList.add(res);
-                log.debug("Digit : " + res.getSym());
+               // log.debug("Digit : " + res.getSym());
                 //this.currentCh = getChar();
             } else if (isOper(currentCh + "")) {
                 res = new token();
                 res.setSym(symbols.get(currentCh+""));
                 res.setVal(currentCh+"");
                 tokenList.add(res);
-                log.debug("Oper : " + res.getSym());
+              //  log.debug("Oper : " + res.getSym());
                 this.currentCh = getChar();
             } else if (isScob(currentCh + "")) {
                 res = new token();
                 res.setSym(symbols.get(currentCh+""));
                 res.setVal(currentCh+"");
                 tokenList.add(res);
-                log.debug("Скобка : " + res.getSym());
+               // log.debug("Скобка : " + res.getSym());
                 this.currentCh = getChar();
             } else if (isEndOper(currentCh + "")) {
                 res = new token();
                 res.setSym(symbols.get(currentCh+""));
                 res.setVal(currentCh+"");
                 tokenList.add(res);
-                log.debug("End oper : " + res.getSym());
+              //  log.debug("End oper : " + res.getSym());
                 this.currentCh = getChar();
             } else {
                 this.currentCh = getChar();

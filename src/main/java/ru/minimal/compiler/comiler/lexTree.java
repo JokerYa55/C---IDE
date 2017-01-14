@@ -15,7 +15,7 @@ import ru.minimal.compiler.interfaces.pNodeInterface;
  */
 public class lexTree implements pNodeInterface {
 
-    private static final Logger log = Logger.getLogger(lexTree.class);
+   // private static final Logger log = Logger.getLogger(lexTree.class);
     private lexNode rootNode;
     private pNodeEnum expType = pNodeEnum.OPER;
     
@@ -85,7 +85,7 @@ public class lexTree implements pNodeInterface {
                 }
             }
         } catch (Exception e) {
-            log.error(e);
+           // log.error(e);
         }
         //log.debug(res.toString());        
         return res.toString();

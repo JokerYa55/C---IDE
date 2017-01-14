@@ -15,6 +15,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import org.apache.log4j.Logger;
+import ru.minimal.compiler.comiler.compiller_exp;
+import ru.minimal.compiler.comiler.programBlock;
+import ru.minimal.compiler.interfaces.compilerInterface;
+import ru.minimal.compiler.lexer.lexer;
 
 public class FXMLController implements Initializable {
 
@@ -28,7 +32,7 @@ public class FXMLController implements Initializable {
 
     @FXML
     private MenuItem idMenuItemOpen;
-    
+
     @FXML
     private MenuItem idMenuItemCompile;
 
@@ -41,13 +45,32 @@ public class FXMLController implements Initializable {
 
     @FXML
     private void idMenuItemCompileAction(ActionEvent event) {
-        
+        FileChooser fileChooser = new FileChooser();//Класс работы с диалогом выборки и сохранения
+        fileChooser.setTitle("Open Document");//Заголовок диалога
+        FileChooser.ExtensionFilter extFilter
+                = new FileChooser.ExtensionFilter("c-- files (*.c--)", "*.c--");//Расширение
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(null);//Указываем текущую сцену CodeNote.mainStage MainApp.scene.mainStage
+        if (file != null) {
+            try (FileReader fin = new FileReader(file)) {
+                int c;
+                lexer lex = new lexer(fin);
+                compilerInterface comp = new compiller_exp();
+
+                programBlock pb = comp.getPB(null, lex.getTokenList().subList(1, lex.getTokenList().size() - 1));
+                log.debug(pb.toString());
+
+                log.info("------------------------------------------------------------------");
+            } catch (Exception e) {
+                log.error(e);
+            }
+        }
     }
-    
+
     @FXML
     private void idMenuItemOpenAction(ActionEvent event) {
         log.debug(event);
-        
+
         FileChooser fileChooser = new FileChooser();//Класс работы с диалогом выборки и сохранения
         fileChooser.setTitle("Open Document");//Заголовок диалога
         FileChooser.ExtensionFilter extFilter
@@ -62,10 +85,10 @@ public class FXMLController implements Initializable {
                     while ((temp = fr.readLine()) != null) {
                         sb.append(temp + "\n");
                     }
-                    
+
                     idTextEditor.setText(sb.toString());
                     log.debug("program = " + idTextEditor.getText());
-                    
+
                 } catch (Exception e) {
                     log.error(e);
                 }
